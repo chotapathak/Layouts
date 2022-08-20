@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+</head>
+<body>
+    <div class="cart">
+        <div class="total"></div>
+    </div>
+</body>
+<script>
+    let cart = document.querySelector('.cart');
+    let total = document.querySelector('.total');
+
+    window.addEventListener('load', showCart);
+    function showCart(){
+        let item = document.createElement('div');
+        item.classList.add('item');
+        item.innerHTML = `
+            
+        `;
+        console.log('showCart');
+        cart.appendChild(item);
+        let cartItem = localStorage.getItem('cartItem');
+        cartItem = JSON.parse(cartItem);
+
+        let totalItem = document.createElement('h2');
+            
+        for(i in cartItem){
+            totalItem.innerHTML = cartItem.length;
+
+            let item = document.createElement('div');
+            item.classList.add('item');
+            item.innerHTML = `  
+                <div class="item-info">
+                    <img src="${cartItem[i].image_url}" alt="">
+                    <div class="item-name">${cartItem[i].name}</div>
+                    <div class="item-price">${cartItem[i].price}</div>
+                    <div class="item-total">${i}</div>
+                </div>
+                <div class="item-delete">
+                    <button>Delete</button>
+                </div>
+            `;
+            cart.appendChild(item);
+            total.appendChild(totalItem);
+        }
+    }
+</script>
+</html>
