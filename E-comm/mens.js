@@ -255,43 +255,27 @@ var mensData = [
 
 let main = document.querySelector("#main-box");
 
-
 window.addEventListener("load", () => theLayout(mensData));
+const cartItem = [];
 
 function theLayout(Data) {
   let items = document.querySelector("#items");
   let item = "";
-  for (let i = 0; i < Data.length; i++) {
-    item += `<div class="card">
-    <img src="${Data[i].image_url}" alt="">
+  Data.forEach((Data, index) => {
+    item += `<div class="card"> 
+    <img src="${Data.image_url}" alt="">
     <div class="item-info">
-      <h3>${Data[i].name}</h3>
-      <p> $ ${Data[i].price}</p>
-      <button>add to cart</button>
+      <h3>${Data.name}</h3>
+      <p> $ ${Data.price}</p>
+      <button id='${index}' onclick='addToCart()'>add to cart</button>
     </div>
   </div>`;
-  }
+  });
   items.innerHTML = item;
 }
 
-  // for (i in mensData) {
-  //   const div = document.createElement("div");
-  //   div.classList.add("card");
-  //   div.innerHTML = `
-  // <img src="${Data[i].image_url}" alt="">
-  // <h4>${Data[i].name} </h4>
-  // <h4> ${Data[i].price} </h4>
-  // <button>Add to cart</button>
-  // `;
-  //   items.appendChild(div);
-  //   console.log(div);
-  // }
-// }
-
-function renderItem(data) {
-  console.log(main);
-
-  const item = document.createElement("div");
-  item.innerHTML = "<h1> hello </h1>";
-  main.appendChild(item);
+function addToCart() {
+  let index = event.target.id;
+  cartItem.push(mensData[index]);
+  localStorage.setItem("cartItem", JSON.stringify(cartItem));
 }
