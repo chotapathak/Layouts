@@ -279,3 +279,4 @@ function addToCart() {
   cartItem.push(mensData[index]);
   localStorage.setItem("cartItem", JSON.stringify(cartItem));
 }
+
